@@ -5,65 +5,69 @@
 # columns: company, international name, current price, % change
 # Название, тикер, цена, изм %
 # Checks !!!! try catch + reconnect
-# Logging <- HOMEWORK 24.09.2021
-# Timer - how much time it took < HOMEWORK 24.09.2021
+
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-import time  # timer
-tic = time.perf_counter()  # start timer
+#import time  # timer
+#tic = time.perf_counter()  # start timer
 logging.info('program start')
 
 #Trying to set up a parser and soup
-from bs4 import BeautifulSoup
+
+x = input() #tiket
 import requests
-url = 'https://smart-lab.ru/q/shares/'
-page = requests.get(url)
-logging.info(page.status_code)
-soup = BeautifulSoup(page.text, "html.parser")
-print(soup)
+from bs4 import BeautifulSoup
+url = ("https://smart-lab.ru/forum/" + x)
+req = requests.get(url)
+src = req.text
+spisok = []
+soup = BeautifulSoup(src, "lxml")
+MSK_trd = soup.find_all(class_="temp_micex_info_item")
+for item in MSK_trd:
+    spisok += ((item.text).split())
+print(spisok[0])
 
 
-
-class Stocks:
-    def get_data_from_smart_lab(self):
-        print('Getting data has started:')
+#class Stocks:
+  #  def get_data_from_smart_lab(self):
+  #      print('Getting data has started:')
         #try catch, reconnect
         #web scrapping = data(columns + values)
-        data = 'data'
-        logging.info('data from smart lab')
-        logging.debug(data)
-        return data
+   #     data = 'data'
+    #    logging.info('data from smart lab')
+    #    logging.debug(data)
+     #   return data
 
-    def make_excel(self, data):
-        logging.info('make excel')
+   # def make_excel(self, data):
+    #    logging.info('make excel')
         #formatting
-        print('Formatting excel')
+     #   print('Formatting excel')
         #save excel
-        print('Saving excel')
+     #   print('Saving excel')
 
-    def make_google_sheet(self, data):
-        logging.info('make google sheet')
+   # def make_google_sheet(self, data):
+    #    logging.info('make google sheet')
         #formatting
-        print('Formatting google sheet')
+      #  print('Formatting google sheet')
         #save google sheet to your drive
-        print('Saving google sheet')
+       # print('Saving google sheet')
 
 
-def main():
-    x1 = Stocks()
-    data = x1.get_data_from_smart_lab()
-    x1.make_excel(data)
-    x1.make_google_sheet(data)
+#def main():
+#    x1 = Stocks()
+#    data = x1.get_data_from_smart_lab()
+#    x1.make_excel(data)
+#    x1.make_google_sheet(data)
 
-toc = time.perf_counter()     # stop timer
-
-
+#toc = time.perf_counter()     # stop timer
 
 
 
-if __name__ == '__main__':
-    print(f"The calculation took {toc - tic: 0.4f} seconds")
-    main()
-    logging.info('Program stop')
+
+
+#if __name__ == '__main__':
+  #  print(f"The calculation took {toc - tic: 0.4f} seconds")
+ #   main()
+  #  logging.info('Program stop')
