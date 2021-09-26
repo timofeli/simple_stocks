@@ -11,17 +11,20 @@
 
 
 import logging
+import time
+import requests
+from bs4 import BeautifulSoup
+
+
 logging.basicConfig(level=logging.DEBUG)
 
-import time  # timer
 tic = time.perf_counter()  # start timer
 logging.info('program start')
 
 #Trying to set up a parser and soup
 
 x = input() #tiket
-import requests
-from bs4 import BeautifulSoup
+
 url = ("https://smart-lab.ru/forum/" + x)
 req = requests.get(url)
 src = req.text
