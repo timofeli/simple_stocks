@@ -5,13 +5,16 @@
 # columns: company, international name, current price, % change
 # Название, тикер, цена, изм %
 # Checks !!!! try catch + reconnect
+# pip install lxml
+# pip install requests
+# pip install beautifulsoup4
 
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-#import time  # timer
-#tic = time.perf_counter()  # start timer
+import time  # timer
+tic = time.perf_counter()  # start timer
 logging.info('program start')
 
 #Trying to set up a parser and soup
@@ -27,7 +30,7 @@ soup = BeautifulSoup(src, "lxml")
 MSK_trd = soup.find_all(class_="temp_micex_info_item")
 for item in MSK_trd:
     spisok += ((item.text).split())
-print(spisok[0])
+print(spisok[0]) # returns the ticket price
 
 
 #class Stocks:
@@ -61,13 +64,13 @@ print(spisok[0])
 #    x1.make_excel(data)
 #    x1.make_google_sheet(data)
 
-#toc = time.perf_counter()     # stop timer
+toc = time.perf_counter()     # stop timer
 
 
 
 
 
 #if __name__ == '__main__':
-  #  print(f"The calculation took {toc - tic: 0.4f} seconds")
+print(f"The calculation took {toc - tic: 0.4f} seconds")
  #   main()
   #  logging.info('Program stop')
